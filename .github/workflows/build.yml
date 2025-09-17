@@ -8,7 +8,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - name: Free disk space
         run: |
@@ -70,6 +70,8 @@ jobs:
             CONFIG_PACKAGE_rpcd=y
             CONFIG_PACKAGE_uhttpd-mod-ubus=y
             CONFIG_PACKAGE_luci-app-opkg=y
+            CONFIG_PACKAGE_luci-app-openclash=y
+            CONFIG_PACKAGE_luci-app-frpc=y
             CONFIG_PACKAGE_luci-app-firewall=y
             CONFIG_PACKAGE_luci-proto-ppp=y
             CONFIG_PACKAGE_luci-proto-ipv6=y
@@ -106,7 +108,7 @@ jobs:
 
   gh-pages:
     needs: [ build ]
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     permissions:
       contents: write
     steps:
@@ -157,7 +159,7 @@ jobs:
 
   release:
     needs: [ build ]
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     permissions:
       contents: write
     steps:
@@ -217,4 +219,5 @@ jobs:
           files: |
             bin/targets/ipq50xx/arm/sha256sums
             bin/targets/ipq50xx/arm/*.*
+
             *.tar
